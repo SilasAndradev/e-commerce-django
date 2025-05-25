@@ -30,4 +30,10 @@ def MakeOrder(request, pk):
                 order.client = client
                 order.product = product
                 order.save()
-                return
+                return redirect('home')
+            
+        context = {
+            'form':form,
+        }
+
+        return render(request, '', context)
