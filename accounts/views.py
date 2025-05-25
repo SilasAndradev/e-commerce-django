@@ -5,10 +5,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from accounts.forms import ClientForm
-from accounts.models import Client
+from .forms import ClientForm
+from .models import Client
+from shopping.models import Order
 
-# Create your views here.
+
 def LoginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -64,4 +65,14 @@ def RegisterUser(request):
 @login_required(login_url='/login')
 def LogoutUser(request):
     logout(request)
+    return redirect('home')
+
+def ViewClientOrders(request, pk):
+    client = Client.objects.get(pk)
+    if request.user == client.user:
+        orders = Order.objects.filter(client=client)
+        context ={
+            'orders':orders,
+        }
+        return render(request, '', context)
     return redirect('home')
