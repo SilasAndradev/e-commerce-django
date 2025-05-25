@@ -4,6 +4,7 @@ from accounts.models import Client
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
+    price = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
