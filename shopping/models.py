@@ -19,6 +19,7 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     preparation_time = models.DateTimeField()
     delivery_confimation = models.BooleanField(default=False)
+    order_sent = models.BooleanField(default=False)
     address = models.CharField(max_length=255)
     HouseNumber = models.CharField(max_length=10, null=True, blank=True)
 
